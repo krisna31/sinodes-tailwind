@@ -12,8 +12,15 @@ type error = {
   isError: boolean;
   message: string;
 };
+type UserDataType = {
+  isLoggedIn: boolean;
+  uid: string;
+  email: string;
+  isVerified: boolean;
+  isAnonymous: boolean;
+};
 
-export default function Register({ setUserData }: { setUserData: Dispatch<SetStateAction<boolean>> }) {
+export default function Register({ getUserData, setUserData }: { getUserData: UserDataType; setUserData: Dispatch<SetStateAction<UserDataType>> }) {
   const [getError, setError] = useState<error>({ isError: false, message: "" });
   const [getStringInput, setStringInput] = useState<Inputs>({ email: "", password: "" });
   const {
@@ -30,7 +37,7 @@ export default function Register({ setUserData }: { setUserData: Dispatch<SetSta
         console.log(userCredential);
         // Signed in
         const user = userCredential.user;
-        setUserData(true);
+        setUserData({ ...getUserData, isLoggedIn: true, uid: user.uid, email: user.email || "not have email", isVerified: user.emailVerified, isAnonymous: user.isAnonymous });
         navigate("/dashboard");
       })
       .catch((error) => {
@@ -43,9 +50,9 @@ export default function Register({ setUserData }: { setUserData: Dispatch<SetSta
   // console.log(watch("nama"));
 
   return (
-    <div className="container px-1 mx-auto flex-1 min-w-full bg-slate-400">
+    <div className="container px-1 mx-auto flex-1 min-w-full bg-slate-200 dark:bg-slate-400">
       <div className="flex flex-col text-left md:flex-row justify-evenly md:items-center my-5">
-        <div className="w-2/3 lg:w-9/12 mx-auto md:mx-0">
+        <div className="w-2/3 md:w-1/2 lg:w-1/3 mx-auto md:mx-0">
           <div className="bg-slate-50 p-10 flex flex-col w-full shadow-xl rounded-xl dark:bg-slate-300">
             <h2 className="text-2xl font-bold text-gray-800 text-left">Sign Up</h2>
             <form className="w-full" onSubmit={handleSubmit(onSubmit)}>

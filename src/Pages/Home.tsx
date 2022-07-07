@@ -2,24 +2,32 @@ import { Dispatch, SetStateAction } from "react";
 import { Link, Outlet } from "react-router-dom";
 import logo from "../images/logo.ico";
 
-export default function Home({ getUserData, setUserData }: { getUserData: boolean; setUserData: Dispatch<SetStateAction<boolean>> }) {
+type UserDataType = {
+  isLoggedIn: boolean;
+  uid: string;
+  email: string;
+  isVerified: boolean;
+  isAnonymous: boolean;
+};
+
+export default function Home({ getUserData, setUserData }: { getUserData: UserDataType; setUserData: Dispatch<SetStateAction<UserDataType>> }) {
   return (
     <div className="min-h-screen flex flex-col justify-between">
-      <header className="bg-slate-100 shadow-sm flex items-center justify-between py-2 pl-2 pr-5 dark:bg-slate-400">
+      <header className="bg-slate-200 shadow-sm flex items-center justify-between py-2 pl-2 pr-5 dark:bg-slate-400">
         <Link to="/">
           <img src={logo} alt="Krisna31" className="w-10 h-10 md:w-11 md:h-10 " />
         </Link>
-        {getUserData ? (
-          <Link to="/" onClick={() => setUserData(false)}>
-            <span className="text-slate-700 px-5 py-2 bg-gray-200 rounded-md text-xs hover:bg-gray-500 hover:text-slate-100 mx-4 md:mx-7 md:px-6 md:text-sm">Logout</span>
+        {getUserData.isLoggedIn ? (
+          <Link to="/" onClick={() => setUserData({ ...getUserData, isLoggedIn: false })}>
+            <span className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 mx-4 md:mx-7 md:px-6 md:text-sm dark:text-slate-700">Logout</span>
           </Link>
         ) : (
           <div className="text-sm ">
             <Link to="/login">
-              <span className="text-slate-700 px-5 py-2 bg-gray-200 rounded-md text-xs hover:bg-gray-500 hover:text-slate-100 mx-4 md:mx-7 md:px-6 md:text-sm">Login</span>
+              <span className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 mx-4 md:mx-7 md:px-6 md:text-sm dark:text-slate-700">Login</span>
             </Link>
             <Link to="/register">
-              <span className="text-slate-700 px-5 py-2 bg-gray-200 rounded-md text-xs hover:bg-gray-500 hover:text-slate-100 md:px-6 md:text-sm">Register</span>
+              <span className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 md:px-6 md:text-sm dark:text-slate-700">Register</span>
             </Link>
           </div>
         )}
@@ -27,7 +35,7 @@ export default function Home({ getUserData, setUserData }: { getUserData: boolea
 
       <Outlet />
 
-      <footer className="bg-slate-100 rounded-sm shadow-sm flex items-center justify-between py-2 px-3 dark:bg-slate-400 flex-col md:flex-row">
+      <footer className="bg-slate-200 rounded-sm shadow-sm flex items-center justify-between py-2 px-3 dark:bg-slate-400 flex-col md:flex-row">
         <span className="text-sm text-slate-500 sm:text-center dark:text-slate-700 mb-4 md:mb-0">@2022 Krisna31. Created With Laptop</span>
         <div className="flex justify-between">
           <div className="flex space-x-6 sm:justify-center sm:mt-0 justify-center">
