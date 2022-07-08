@@ -6,7 +6,7 @@ import LandingPage from "./Pages/LandingPage";
 import Login from "./Pages/Login";
 import NotFound from "./Pages/NotFound";
 import Register from "./Pages/Register";
-import { UserDataType } from "./intefaces/UserDataType";
+import { UserDataType } from "./types/UserDataType";
 
 const App = () => {
   const [getUserData, setUserData] = useState<UserDataType>({ isLoggedIn: false, uid: " ", email: " ", isVerified: false, isAnonymous: false });

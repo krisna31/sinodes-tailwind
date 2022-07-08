@@ -1,11 +1,12 @@
 import React, { Dispatch, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
-import { AuthPageDataType } from "../intefaces/AuthPageDataType";
-import { CardInputType } from "../intefaces/CardInputType";
-import { UserDataType } from "../intefaces/UserDataType";
+import { AuthPageDataType } from "../types/AuthPageDataType";
+import { CardInputType } from "../types/CardInputType";
+import { UserDataType } from "../types/UserDataType";
 import { getDatabase, onValue, push, ref, serverTimestamp, set } from "firebase/database";
 import { deleteDataFromApi, writeUserData } from "../utils/firebase/CRUD";
+import { contentNoteType } from "../types/ContentNoteType";
 
 
 export default function Dashboard({ getUserData }: { getUserData: UserDataType }) {
@@ -22,13 +23,6 @@ type noteType = {
   counter: number;
 }
 
-type contentNoteType = {
-  title: string;
-  content: string;
-  date: string;
-  noteID: string
-}
-
 const Authorize = ({ getUserData }: { getUserData: UserDataType }) => {
   const [getAuthPageData, setAuthPageData] = useState<AuthPageDataType>({ isShowModalBox: false });
 
@@ -39,48 +33,69 @@ const Authorize = ({ getUserData }: { getUserData: UserDataType }) => {
     const notesRef = ref(db, 'notes/' + getUserData.uid);
     onValue(notesRef, (snapshot) => {
       const notes = snapshot.val();
-      setNotes({ isExist: true, notes, counter: getNotes.counter++ })
+      if (notes != null) setNotes({ isExist: true, notes, counter: getNotes.counter++ })
+      else setNotes({ ...getNotes, isExist: false })
     });
 
-    //   return () => {
-    //     second
-    //   }
+    return () => {
+      const db = getDatabase();
+      const notesRef = ref(db, 'notes/' + getUserData.uid);
+      onValue(notesRef, (snapshot) => {
+        const notes = snapshot.val();
+        if (notes != null) setNotes({ isExist: true, notes, counter: getNotes.counter++ })
+        else setNotes({ ...getNotes, isExist: false })
+      });
+    }
   }, [getNotes?.counter])
 
 
+
   return (
-    <div className="container min-w-full bg-slate-200 dark:bg-slate-400 flex-1 justify-center items-start flex flex-col relative">
-      <div className="container my-4 min-h-full flex-1 bg-slate-100 dark:bg-slate-300 min-w-full">
-        <h1 className="text-center bg-gradient-to-t from-slate-500 to-slate-800 text-transparent bg-clip-text text-3xl font-extrabold mt-2 mb-4">Simple Notes</h1>
-        {Object.keys(getNotes.notes).map((idNote: string) => {
-          return (
-            <Card title={getNotes.notes[idNote]["title"]} content={getNotes.notes[idNote]["content"]} date={
-              new Date(+getNotes.notes[idNote]["date"]).toLocaleDateString("in-IN", { weekday: "long", year: "numeric", month: "long", day: "numeric" })} noteID={idNote} userID={getUserData.uid} getNotes={getNotes} setNotes={setNotes} />
-          )
-        })
-        }
-      </div>
-      <span
-        className="fixed rounded-full right-5 bottom-6 bg-slate-400 text-4xl p-5 cursor-pointer shadow-md hover:shadow-2xl hover:bg-lime-500 flex justify-center items-center w-16 h-16"
-        onClick={() => setAuthPageData({ ...getAuthPageData, isShowModalBox: true })}
-      >
-        +
-      </span>
-      <ModalBox getAuthPageData={getAuthPageData} setAuthPageData={setAuthPageData} getUserData={getUserData} getNotes={getNotes} setNotes={setNotes} />
-    </div>
+    <>
+      {getNotes.isExist ?
+        <div className="container min-w-full bg-slate-200 dark:bg-slate-400 flex-1 justify-center items-start flex flex-col relative">
+          <div className="container my-4 min-h-full flex-1 bg-slate-100 dark:bg-slate-300 min-w-full">
+            <h1 className="text-center bg-gradient-to-t from-slate-500 to-slate-800 text-transparent bg-clip-text text-3xl font-extrabold mt-2 mb-4">Simple Notes</h1>
+            {Object.keys(getNotes.notes).map((idNote: string) => {
+              return (
+                <Card title={getNotes.notes[idNote]["title"]} content={getNotes.notes[idNote]["content"]} date={
+                  new Date(+getNotes.notes[idNote]["date"]).toLocaleDateString("in-IN", { weekday: "long", year: "numeric", month: "long", day: "numeric" })} noteID={idNote} userID={getUserData.uid} getNotes={getNotes} setNotes={setNotes} key={idNote} />
+              )
+            })
+            }
+          </div>
+          <span
+            className="fixed rounded-full right-5 bottom-6 bg-slate-400 text-4xl p-5 cursor-pointer shadow-md hover:shadow-2xl hover:bg-lime-500 flex justify-center items-center w-16 h-16"
+            onClick={() => setAuthPageData({ ...getAuthPageData, isShowModalBox: true })}
+          >
+            +
+          </span>
+          <ModalBox getAuthPageData={getAuthPageData} setAuthPageData={setAuthPageData} getUserData={getUserData} getNotes={getNotes} setNotes={setNotes} />
+        </div> : <div className="container min-w-full bg-slate-200 dark:bg-slate-400 flex-1 justify-center items-start flex flex-col relative">
+          <div className="container my-4 min-h-full flex-1 bg-slate-100 dark:bg-slate-300 min-w-full flex justify-center items-center">
+            <h1 className="text-center bg-gradient-to-t from-slate-500 to-slate-800 text-transparent bg-clip-text text-3xl font-extrabold mt-2 mb-4">You Have 0 Notes, Start to add one by clicking the add button on the bottom right screen</h1>
+          </div>
+          <span
+            className="fixed rounded-full right-5 bottom-6 bg-slate-400 text-4xl p-5 cursor-pointer shadow-md hover:shadow-2xl hover:bg-lime-500 flex justify-center items-center w-16 h-16"
+            onClick={() => setAuthPageData({ ...getAuthPageData, isShowModalBox: true })}
+          >
+            +
+          </span>
+          <ModalBox getAuthPageData={getAuthPageData} setAuthPageData={setAuthPageData} getUserData={getUserData} getNotes={getNotes} setNotes={setNotes} />
+        </div>
+      }
+    </>
   );
 };
 
 const deleteNote = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, note: contentNoteType, userID: string, getNotes: noteType, setNotes: React.Dispatch<React.SetStateAction<noteType>>) => {
   e.stopPropagation();
-  console.log(note.noteID, userID);
 
   deleteDataFromApi(note.noteID, userID)
     .then((res) => {
       setNotes({ ...getNotes, counter: getNotes.counter++ })
     })
     .catch((error) => {
-      console.log(error);
     });
 }
 
@@ -95,10 +110,10 @@ const Card = ({ title, content, date, noteID, userID, getNotes, setNotes }: { ti
         <p className="mb-2 text-sm text-center font-serif md:text-base">{content}</p>
         <p className="mt-4 font-serif md:text-lg">{date}</p>
         <div className="flex justify-center mt-3">
-          <button type="submit" className="bg-slate-200 mx-3 rounded-xl py-1 px-2 font-serif hover:bg-slate-500 hover:text-white dark:bg-slate-300 md:text-md"
-          >
+          {/* <button type="submit" className="bg-slate-200 mx-3 rounded-xl py-1 px-2 font-serif hover:bg-slate-500 hover:text-white dark:bg-slate-300 md:text-md"
+            onClick={e => updateNote(e, note, userID, getNotes, setNotes)}>>
             Update
-          </button>
+          </button> */}
           <button type="submit" className="bg-slate-200 mx-3 rounded-xl py-1 px-2 font-serif hover:bg-red-700 hover:text-white dark:bg-slate-300 md:text-md"
             onClick={e => deleteNote(e, note, userID, getNotes, setNotes)}>
             Delete
@@ -123,13 +138,14 @@ const ModalBox = ({ getAuthPageData, setAuthPageData, getUserData, getNotes, set
   const [getStringInput, setStringInput] = useState<CardInputType>({ title: " ", content: " ", date: " " });
 
   const onSubmit: SubmitHandler<CardInputType> = ({ title, content, date }) => {
-    // console.log(getNowTimeStamp().toMillis())
     date = new Date().getTime().toString()
     writeUserData(getUserData.uid, getUserData.email, title, content, date)
       .then((res) => {
         setAuthPageData({ ...getAuthPageData, isShowModalBox: false })
         setError({ isError: false, message: " " })
-        setNotes({ ...getNotes, counter: getNotes.counter++ })
+
+        // PENYEBAB ERROR SAAT CARD KOSONG NAMUN DATA PERTAMA KALI DIMASUKIN setNotes({ ...getNotes, counter: getNotes.counter++ })
+
       })
       .catch((rej) => {
         if (rej.toString().match("Error: PERMISSION_DENIED: Permission denied"))

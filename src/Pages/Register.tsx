@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { Dispatch, SetStateAction, useState } from "react";
-import { UserDataType } from "../intefaces/UserDataType";
+import { UserDataType } from "../types/UserDataType";
 
 type Inputs = {
   email: string;
