@@ -6,19 +6,10 @@ import LandingPage from "./Pages/LandingPage";
 import Login from "./Pages/Login";
 import NotFound from "./Pages/NotFound";
 import Register from "./Pages/Register";
-
-type UserDataType = {
-  isLoggedIn: boolean;
-  uid: string;
-  email: string;
-  isVerified: boolean;
-  isAnonymous: boolean;
-};
+import { UserDataType } from "./intefaces/UserDataType";
 
 const App = () => {
   const [getUserData, setUserData] = useState<UserDataType>({ isLoggedIn: false, uid: " ", email: " ", isVerified: false, isAnonymous: false });
-
-  console.log(getUserData.isLoggedIn);
 
   return (
     <>

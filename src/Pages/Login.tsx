@@ -2,6 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Dispatch, SetStateAction, useState } from "react";
+import { UserDataType } from "../intefaces/UserDataType";
 
 type Inputs = {
   email: string;
@@ -11,14 +12,6 @@ type Inputs = {
 type error = {
   isError: boolean;
   message: string;
-};
-
-type UserDataType = {
-  isLoggedIn: boolean;
-  uid: string;
-  email: string;
-  isVerified: boolean;
-  isAnonymous: boolean;
 };
 
 export default function Login({ getUserData, setUserData }: { getUserData: UserDataType; setUserData: Dispatch<SetStateAction<UserDataType>> }) {
@@ -39,7 +32,6 @@ export default function Login({ getUserData, setUserData }: { getUserData: UserD
         const user = userCredential.user;
         setUserData({ ...getUserData, isLoggedIn: true, uid: user.uid, email: user.email || "not have email", isVerified: user.emailVerified, isAnonymous: user.isAnonymous });
         navigate("/dashboard");
-        console.log(getUserData);
       })
       .catch((error) => {
         setError({ isError: true, message: "Login Failed Check Again Email And Password" });
@@ -57,13 +49,13 @@ export default function Login({ getUserData, setUserData }: { getUserData: UserD
             <h2 className="text-2xl font-bold text-gray-800 text-left">Login</h2>
             <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
               <div id="input" className="flex flex-col w-full my-5">
-                <label htmlFor="username" className="text-gray-500 mb-2">
-                  Username
+                <label htmlFor="email" className="text-gray-500 mb-2">
+                  Email
                 </label>
                 <input
                   type="email"
-                  id="username"
-                  placeholder="Please insert your username"
+                  id="email"
+                  placeholder="Please insert your email"
                   className="appearance-none border-2 border-gray-100 rounded-lg px-4 py-3 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:shadow-lg"
                   required
                   {...register("email")}

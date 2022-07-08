@@ -1,14 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { Link, Outlet } from "react-router-dom";
 import logo from "../images/logo.ico";
-
-type UserDataType = {
-  isLoggedIn: boolean;
-  uid: string;
-  email: string;
-  isVerified: boolean;
-  isAnonymous: boolean;
-};
+import { UserDataType } from "../intefaces/UserDataType";
 
 export default function Home({ getUserData, setUserData }: { getUserData: UserDataType; setUserData: Dispatch<SetStateAction<UserDataType>> }) {
   return (
