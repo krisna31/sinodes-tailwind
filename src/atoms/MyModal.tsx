@@ -24,18 +24,22 @@ const MyModal = ({
   const [isUpdateDataToAPI, setIsUpdateDataToAPI] = useState(false)
 
   const onSubmit: SubmitHandler<contentNoteType> = ({
-    title, content, date, noteID, userID
+    title, content, date, noteID, userID, email
   }) => {
     setIsUpdateDataToAPI(true)
     date = new Date().getTime() + "";
     noteID = updateData.noteID;
     userID = updateData.userID;
-    updateDataToAPI(title, content, date, noteID, userID)
+    email = updateData.email;
+    updateDataToAPI(title, content, date, noteID, userID, email)
       .then((res) => {
+        console.log("🚀 ~ file: MyModal.tsx ~ line 35 ~ .then ~ res", res)
+
         setUpdateData({ ...updateData, isShowUpdateModal: false })
         setError({ isError: false, message: " " });
       })
       .catch((rej) => {
+        console.log("🚀 ~ file: MyModal.tsx ~ line 43 ~ rej", rej)
         if (rej.toString().match("Error: PERMISSION_DENIED: Permission denied")) setError({ isError: true, message: "You Are Log out, Please Login Again" });
         else setError({ isError: true, message: "Something Wrong Please Log out then login again if still occured contact developer" });
       })

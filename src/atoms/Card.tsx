@@ -5,7 +5,7 @@ import { noteType } from "../types/noteType";
 import AlertYesOrNo from "./AlertYesOrNo";
 import MyModal from "./MyModal";
 
-const Card = ({ title, content, date, noteID, userID, getNotes, setNotes }: { title: string, content: string, date: string, noteID: string, userID: string, getNotes: noteType, setNotes: React.Dispatch<React.SetStateAction<noteType>> }) => {
+const Card = ({ title, content, date, noteID, userID, getNotes, setNotes, email }: { title: string, content: string, date: string, noteID: string, userID: string, getNotes: noteType, setNotes: React.Dispatch<React.SetStateAction<noteType>>, email: string }) => {
 
   const [updateData, setUpdatedata] = useState<contentNoteType>({
     title: "",
@@ -13,6 +13,7 @@ const Card = ({ title, content, date, noteID, userID, getNotes, setNotes }: { ti
     date: "",
     noteID: "",
     userID: "",
+    email: "",
     isShowUpdateModal: false,
   });
 
@@ -32,6 +33,7 @@ const Card = ({ title, content, date, noteID, userID, getNotes, setNotes }: { ti
     noteID: string;
   },
     userID: string,
+    email: string,
   ) => {
     e.stopPropagation();
     setUpdatedata({
@@ -40,6 +42,7 @@ const Card = ({ title, content, date, noteID, userID, getNotes, setNotes }: { ti
       date: note.date,
       noteID: note.noteID,
       userID,
+      email,
       isShowUpdateModal: true,
     })
   }
@@ -63,7 +66,7 @@ const Card = ({ title, content, date, noteID, userID, getNotes, setNotes }: { ti
         <div className="flex justify-center mt-3">
           <button type="submit" className="bg-slate-200 mx-3 rounded-xl py-1 px-2 font-serif hover:bg-slate-500 hover:text-white dark:bg-slate-300 md:text-md transition-all ease-in-out delay-75 duration-200 hover:text-base"
             onClick={e => {
-              updateNote(e, note, userID)
+              updateNote(e, note, userID, email)
             }}>
             Update
           </button>

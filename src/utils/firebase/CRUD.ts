@@ -51,14 +51,15 @@ const deleteNote = (
     .catch((error) => {});
 };
 
-const updateDataToAPI = (title: string, content: string, date: string, noteID: string, userID: string) => {
+const updateDataToAPI = (title: string, content: string, date: string, noteID: string, userID: string, email: string) => {
   const db = getDatabase();
   const notesRef = ref(db, "notes/" + userID + "/" + noteID);
   return new Promise((res, rej) => {
     set(notesRef, {
-      title: title,
-      content: content,
-      date: date,
+      email,
+      title,
+      content,
+      date,
     })
       .then(() => {
         res(true);
@@ -69,4 +70,4 @@ const updateDataToAPI = (title: string, content: string, date: string, noteID: s
   });
 };
 
-export { writeUserData, deleteDataFromApi, deleteNote, updateDataToAPI };
+export { writeUserData, deleteNote, updateDataToAPI };

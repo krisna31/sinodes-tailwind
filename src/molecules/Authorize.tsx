@@ -56,7 +56,7 @@ const Authorize = ({ getUserData }: { getUserData: UserDataType }) => {
               {Object.keys(getNotes.notes).map((idNote: string) => {
                 return (
                   <Card title={getNotes.notes[idNote]["title"]} content={getNotes.notes[idNote]["content"]} date={
-                    new Date(+getNotes.notes[idNote]["date"]).toLocaleString("ID-id").replaceAll("/", "-").replaceAll('.', ':')} noteID={idNote} userID={getUserData.uid} getNotes={getNotes} setNotes={setNotes} key={idNote} />
+                    new Date(+getNotes.notes[idNote]["date"]).toLocaleString("ID-id").replaceAll("/", "-").replaceAll('.', ':')} noteID={idNote} userID={getUserData.uid} getNotes={getNotes} setNotes={setNotes} key={idNote} email={getUserData.email} />
                 )
               })
               }

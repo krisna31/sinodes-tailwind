@@ -4,6 +4,7 @@ type contentNoteType = {
   date: string;
   noteID: string;
   userID: string;
+  email: string;
   isShowUpdateModal: boolean;
 };
 
