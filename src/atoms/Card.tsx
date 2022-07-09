@@ -55,9 +55,9 @@ const Card = ({ title, content, date, noteID, userID, getNotes, setNotes }: { ti
 
   return (
     <>
-      <div className="bg-slate-400 mx-auto w-1/2 md:w-2/5 p-3 rounded-lg text-center text-sm mb-3" key={noteID}>
+      <div className="bg-slate-400 mx-auto w-2/3 md:w-1/2 p-3 rounded-lg text-center text-sm mb-3" key={noteID}>
         <h2 className="mb-2 text-lg bg-gradient-to-b from-slate-900 to-slate-600 text-transparent bg-clip-text font-extrabold md:text-2xl hover:animate-pulse">{title}</h2>
-        <p className="mb-2 text-sm text-center font-serif md:text-base hover:animate-pulse">{content}</p>
+        <p className="text-sm text-center font-serif md:text-base hover:animate-pulse">{content}</p>
         <p className="mt-4 font-serif md:text-lg hover:animate-pulse">Date : {newDate[0]}</p>
         <p className=" font-serif md:text-lg hover:animate-pulse">Jam : {newDate[1]}</p>
         <div className="flex justify-center mt-3">

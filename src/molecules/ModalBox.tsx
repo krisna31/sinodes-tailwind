@@ -60,6 +60,7 @@ const ModalBox = ({
             onClick={() => {
               setStringInput({ content: " ", date: " ", title: " " })
               setAuthPageData({ ...getAuthPageData, isShowModalBox: false })
+
             }}
           >
             x
@@ -67,7 +68,7 @@ const ModalBox = ({
 
           <div className="container justify-center items-center  flex-1 min-w-full pt-5">
             <div className="flex flex-col text-left md:flex-row justify-evenly md:items-center mt-20">
-              <div className="w-2/3 md:w-1/2 lg:w-1/3 mx-auto md:mx-0">
+              <div className="md:w-1/2 lg:w-1/3 mx-auto md:mx-0">
                 <div className="bg-slate-50 p-10 flex flex-col w-full shadow-xl rounded-xl dark:bg-slate-300">
                   <h2 className="text-2xl font-bold text-gray-800 text-left">Add Note</h2>
                   <form className="w-full" onSubmit={handleSubmit(onSubmit)}>

@@ -52,7 +52,7 @@ const Authorize = ({ getUserData }: { getUserData: UserDataType }) => {
         : getNotes.isExist ?
           <div className="container min-w-full bg-slate-200 dark:bg-slate-400 flex-1 justify-center items-start flex flex-col relative">
             <div className="container my-4 min-h-full flex-1 bg-slate-100 dark:bg-slate-300 min-w-full">
-              <h1 className="text-center bg-gradient-to-t from-slate-500 to-slate-800 text-transparent bg-clip-text text-3xl font-extrabold mt-2 mb-4 transition-all ease-in-out scale-100 hover:animate-pulse">Simple Notes</h1>
+              <h1 className="text-center bg-gradient-to-t from-slate-500 to-slate-800 text-transparent bg-clip-text text-4xl md:text-5xl lg:text-6xl font-extrabold mt-2 mb-4 transition-all ease-in-out scale-100 hover:animate-pulse">Simple Notes</h1>
               {Object.keys(getNotes.notes).map((idNote: string) => {
                 return (
                   <Card title={getNotes.notes[idNote]["title"]} content={getNotes.notes[idNote]["content"]} date={
