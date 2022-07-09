@@ -4,6 +4,12 @@ this is a project about auth and CRUD app that inspired from yt video about reac
 # what special this project?
 even though i know react have redux as global state management, i still don't really understand why we really need redux so i try to create this one of my serious project to learn more about why we need redux instead of useState that deliver with prop, small note that i already try redux before in `sinode-firebase` github
 
+# what i learn new here?
+`Typescript`\
+`fell without global state management`\
+`CRUD without tutorial`\
+`And many else`
+
 # Want Try?
 just run `git clone https://github.com/krisna31/sinodes-tailwind`\
 then `cd sinodes-tailwind`\
