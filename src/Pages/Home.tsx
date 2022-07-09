@@ -7,6 +7,7 @@ export default function Home({ getUserData, setUserData }: { getUserData: UserDa
   const userData = JSON.parse(localStorage.getItem("datauser") || '{}');
   console.log(getUserData.email);
 
+
   return (
     <div className="min-h-screen flex flex-col justify-between">
       <header className="bg-slate-200 shadow-sm flex items-center justify-between py-2 pl-2 pr-5 dark:bg-slate-400">
@@ -17,7 +18,7 @@ export default function Home({ getUserData, setUserData }: { getUserData: UserDa
             </Link>
             <div className="flex flex-row">
               {getUserData.email && <div className="text-slate-600 px-5 py-2 bg-slate-300  rounded-md text-xs md:text-sm dark:text-slate-700" >
-                {getUserData.email}
+                {getUserData.email === " " ? userData.email : getUserData.email}
               </div>}
               <Link to="/" onClick={() => {
                 setUserData({ ...getUserData, isLoggedIn: false })
