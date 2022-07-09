@@ -42,6 +42,7 @@ export const MyForm = ({
           {...register("email")}
           value={getStringInput.email}
           onChange={(e) => setStringInput({ ...getStringInput, email: e.target.value })}
+          onKeyPress={(e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => { e.key === 'Enter' && e.preventDefault(); }}
         />
         {errors.email && <span>This field is required</span>}
       </div>
@@ -58,6 +59,7 @@ export const MyForm = ({
           {...register("password")}
           value={getStringInput.password}
           onChange={(e) => setStringInput({ ...getStringInput, password: e.target.value })}
+          onKeyPress={(e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => { e.key === 'Enter' && e.preventDefault(); }}
         />
         {getError.isError && <span className="text-red-700 text-xs font-bold mt-3">{getError.message}</span>}
         {errors.password && <span>This field is required</span>}

@@ -7,22 +7,29 @@ export default function Home({ getUserData, setUserData }: { getUserData: UserDa
   return (
     <div className="min-h-screen flex flex-col justify-between">
       <header className="bg-slate-200 shadow-sm flex items-center justify-between py-2 pl-2 pr-5 dark:bg-slate-400">
-        <Link to="/">
-          <img src={logo} alt="Krisna31" className="w-10 h-10 md:w-11 md:h-10 " />
-        </Link>
         {getUserData.isLoggedIn ? (
-          <Link to="/" onClick={() => setUserData({ ...getUserData, isLoggedIn: false })}>
-            <span className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 mx-4 md:mx-7 md:px-6 md:text-sm dark:text-slate-700">Logout</span>
-          </Link>
+          <>
+            <Link to="/dashboard">
+              <img src={logo} alt="Krisna31" className="w-10 h-10 md:w-11 md:h-10 " />
+            </Link>
+            <Link to="/" onClick={() => setUserData({ ...getUserData, isLoggedIn: false })} className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 mx-4 md:mx-7 md:px-6 md:text-sm dark:text-slate-700" >
+              Logout
+            </Link>
+          </>
         ) : (
-          <div className="text-sm ">
-            <Link to="/login">
-              <span className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 mx-4 md:mx-7 md:px-6 md:text-sm dark:text-slate-700">Login</span>
+          <>
+            <Link to="/">
+              <img src={logo} alt="Krisna31" className="w-10 h-10 md:w-11 md:h-10 " />
             </Link>
-            <Link to="/register">
-              <span className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 md:px-6 md:text-sm dark:text-slate-700">Register</span>
-            </Link>
-          </div>
+            <div className="text-sm ">
+              <Link to="/login" className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 mx-4 md:mx-7 md:px-6 md:text-sm dark:text-slate-700">
+                Login
+              </Link>
+              <Link to="/register" className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 md:px-6 md:text-sm dark:text-slate-700">
+                Register
+              </Link>
+            </div>
+          </>
         )}
       </header>
 
