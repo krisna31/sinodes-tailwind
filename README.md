@@ -1,3 +1,9 @@
+# Attention 
+i'am as the dev still can't fix 2 little bug in add note and update note but because it's not break the flow of the app so maybe sometimes i or maybe `YOU` will help me to fix it. If you really want to help me you can do pull req or asking to me first what the bug is about. Thank you for read this
+
+# How long this project done?
+3 days
+
 # What is this project
 this is a project about auth and CRUD app that inspired from yt video about react-firebase with indonesian languange
 
