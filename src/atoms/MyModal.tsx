@@ -80,7 +80,7 @@ const MyModal = ({
                         onChange={(e) => setInputString({ ...inputString, title: e.target.value })}
                         onKeyPress={(e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => { e.key === 'Enter' && e.preventDefault(); }}
                       />
-                      {errors.title && <span className="text-red-700 text-xs font-bold mt-3">Type Title With only 20 Max Length</span>}
+                      {errors.title && <span className="text-red-700 text-xs font-bold mt-3">Please Update Title Too Or Length Max 20</span>}
                     </div>
                     <div id="input" className="flex flex-col w-full my-5">
                       <label htmlFor="Content" className="text-gray-500 mb-2">
@@ -97,7 +97,7 @@ const MyModal = ({
                         onKeyPress={(e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => { e.key === 'Enter' && e.preventDefault(); }}
                       />
                       {getError.isError && <span className="text-red-700 text-xs font-bold mt-3">{getError.message}</span>}
-                      {errors.content && <span className="text-red-700 text-xs font-bold mt-3">Type Title With only 50 Max Length</span>}
+                      {errors.content && <span className="text-red-700 text-xs font-bold mt-3">Please Update Content Too Or Length Max 20</span>}
                     </div>
                     <div id="button" className="flex flex-col w-full">
                       {isUpdateDataToAPI ? <button type="submit" className="w-full py-4 bg-green-500 rounded-lg text-green-100" disabled>

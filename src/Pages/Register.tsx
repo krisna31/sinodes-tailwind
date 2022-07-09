@@ -36,7 +36,7 @@ export default function Register({ getUserData, setUserData }: { getUserData: Us
       <div className="flex flex-col text-left md:flex-row justify-evenly md:items-center my-5">
         <div className="w-2/3 md:w-1/2 lg:w-1/3 mx-auto md:mx-0">
           <div className="bg-slate-50 p-10 flex flex-col w-full shadow-xl rounded-xl dark:bg-slate-300">
-            <h2 className="text-2xl font-bold text-gray-800 text-left">Sign Up</h2>
+            <h2 className="text-2xl font-bold text-gray-800 text-left animate-pulse">Sign Up</h2>
             <MyForm getError={getError}
               getStringInput={getStringInput}
               setStringInput={setStringInput}
@@ -45,7 +45,8 @@ export default function Register({ getUserData, setUserData }: { getUserData: Us
               onSubmit={onSubmit}
               errors={errors}
               buttonText="Sign Up"
-              linkText="Login" />
+              linkText="Login"
+              toLink="/login" />
           </div>
         </div>
       </div>

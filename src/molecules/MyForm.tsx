@@ -14,6 +14,7 @@ type MyFormType = {
   errors: FieldErrorsImpl<DeepRequired<Inputs>>;
   buttonText: string;
   linkText: string;
+  toLink: string
 }
 
 export const MyForm = ({
@@ -25,7 +26,8 @@ export const MyForm = ({
   onSubmit,
   errors,
   buttonText,
-  linkText
+  linkText,
+  toLink
 }: MyFormType) => {
   return (
     <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
@@ -76,7 +78,7 @@ export const MyForm = ({
           </div>
         </button>
         <div className="flex justify-evenly mt-5">
-          <Link to="/login" className="w-full text-center font-medium text-gray-500">
+          <Link to={toLink} className="w-full text-center font-medium text-gray-500">
             {linkText}
           </Link>
         </div>

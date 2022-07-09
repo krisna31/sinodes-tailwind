@@ -5,26 +5,23 @@ import { UserDataType } from "../types/UserDataType";
 
 export default function Home({ getUserData, setUserData }: { getUserData: UserDataType; setUserData: Dispatch<SetStateAction<UserDataType>> }) {
   const userData = JSON.parse(localStorage.getItem("datauser") || '{}');
-  console.log(getUserData.email);
-
-
   return (
     <div className="min-h-screen flex flex-col justify-between">
       <header className="bg-slate-200 shadow-sm flex items-center justify-between py-2 pl-2 pr-5 dark:bg-slate-400">
         {getUserData.isLoggedIn || userData.isLoggedIn ? (
           <>
             <Link to="/dashboard">
-              <img src={logo} alt="Krisna31" className="w-10 h-10 md:w-11 md:h-10 " />
+              <img src={logo} alt="Krisna31" className="w-10 h-10 md:w-11 md:h-10 transition-all ease-in-out delay-75 duration-200 hover:scale-110" />
             </Link>
             <div className="flex flex-row">
-              {getUserData.email && <div className="text-slate-600 px-5 py-2 bg-slate-300  rounded-md text-xs md:text-sm dark:text-slate-700" >
+              {getUserData.email && <div className="text-slate-600 px-5 py-2 bg-slate-300  rounded-md text-xs md:text-sm dark:text-slate-700 pointer-events-none" >
                 {getUserData.email === " " ? userData.email : getUserData.email}
               </div>}
               <Link to="/" onClick={() => {
                 setUserData({ ...getUserData, isLoggedIn: false })
                 localStorage.removeItem("datauser")
               }}
-                className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 mx-4 md:mx-7 md:px-6 md:text-sm dark:text-slate-700" >
+                className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 mx-4 md:mx-7 md:px-6 md:text-sm dark:text-slate-700 transition-all ease-in-out delay-75 duration-200 hover:text-sm" >
                 Logout
               </Link>
             </div>
@@ -32,13 +29,13 @@ export default function Home({ getUserData, setUserData }: { getUserData: UserDa
         ) : (
           <>
             <Link to="/">
-              <img src={logo} alt="Krisna31" className="w-10 h-10 md:w-11 md:h-10 " />
+              <img src={logo} alt="Krisna31" className="w-10 h-10 md:w-11 md:h-10 transition-all ease-in-out delay-75 duration-200 hover:scale-110" />
             </Link>
             <div className="text-sm ">
-              <Link to="/login" className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 mx-4 md:mx-7 md:px-6 md:text-sm dark:text-slate-700">
+              <Link to="/login" className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 mx-4 md:mx-7 md:px-6 md:text-sm dark:text-slate-700 transition-all ease-in-out delay-75 duration-200 hover:text-sm">
                 Login
               </Link>
-              <Link to="/register" className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 md:px-6 md:text-sm dark:text-slate-700">
+              <Link to="/register" className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 md:px-6 md:text-sm dark:text-slate-700 transition-all ease-in-out delay-75 duration-200 hover:text-sm">
                 Register
               </Link>
             </div>
@@ -49,7 +46,9 @@ export default function Home({ getUserData, setUserData }: { getUserData: UserDa
       <Outlet />
 
       <footer className="bg-slate-200 rounded-sm shadow-sm flex items-center justify-between py-2 px-3 dark:bg-slate-400 flex-col md:flex-row">
-        <span className="text-sm text-slate-500 sm:text-center dark:text-slate-700 mb-4 md:mb-0">@2022 Krisna31. Created With Laptop</span>
+        <span className="text-sm text-slate-500 sm:text-center dark:text-slate-700 mb-4 md:mb-0">@2022 <a href="https://github.com/krisna31" title="Link Github Krisna" className="text-gray-500 hover:text-gray-900 dark:hover:text-white transition-all ease-in-out delay-75 duration-200 hover:text-base"
+          target="_blank" rel="noopener noreferrer">Krisna31 |</a> Created With <a href="https://www.acer.com/ac/en/ID/content/support-product/6762?b=1" title="Link Github Krisna" className="text-gray-500 hover:text-gray-900 dark:hover:text-white transition-all ease-in-out delay-75 duration-200 hover:text-base"
+            target="_blank" rel="noopener noreferrer">Laptop</a></span>
         <div className="flex justify-between">
           <div className="flex space-x-6 sm:justify-center sm:mt-0 justify-center">
             <a href="https://www.facebook.com/profile.php?id=100006248929202" title="Link Facebook Krisna" className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
