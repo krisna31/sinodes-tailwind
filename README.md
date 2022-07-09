@@ -1,7 +1,7 @@
 # Want Fork?
-just run ### 'git clone https://github.com/krisna31/sinodes-tailwind'
-then ### 'cd sinodes-tailwind'
-next ### 'npm i'
+just run ### `git clone https://github.com/krisna31/sinodes-tailwind`
+then ### `cd sinodes-tailwind`
+next ### `npm i`
 continue ### 'npm run start'
 
 # Getting Started with Create React App
