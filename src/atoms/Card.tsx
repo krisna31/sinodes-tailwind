@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import contentNoteType from "../types/ContentNoteType";
 import DataDeleteNoteType from "../types/DataDeleteNoteType";
 import { noteType } from "../types/noteType";
-import { deleteNote } from "../utils/firebase/CRUD";
 import AlertYesOrNo from "./AlertYesOrNo";
 import MyModal from "./MyModal";
 

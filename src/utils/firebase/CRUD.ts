@@ -1,7 +1,6 @@
 import { ref, remove, set } from "firebase/database";
 import { push } from "firebase/database";
 import { getDatabase } from "firebase/database";
-import contentNoteType from "../../types/ContentNoteType";
 import { noteType } from "../../types/noteType";
 
 const writeUserData = (userId: string, email: string, title: string, content: string, date: string) => {

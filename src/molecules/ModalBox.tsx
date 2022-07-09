@@ -103,7 +103,7 @@ const ModalBox = ({
                         onKeyPress={(e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => { e.key === 'Enter' && e.preventDefault(); }}
                       />
                       {getError.isError && <span className="text-red-700 text-xs font-bold mt-3">{getError.message}</span>}
-                      {errors.content && <span className="text-red-700 text-xs font-bold mt-3">Type Title With only 50 Max Length</span>}
+                      {errors.content && <span className="text-red-700 text-xs font-bold mt-3">Type Content With only 50 Max Length</span>}
                     </div>
                     <div id="button" className="flex flex-col w-full">
                       {isAddDataToAPI ? <button type="submit" className="w-full py-4 bg-green-500 rounded-lg text-green-100" disabled>
