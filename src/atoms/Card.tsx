@@ -1,7 +1,9 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import contentNoteType from "../types/ContentNoteType";
+import DataDeleteNoteType from "../types/DataDeleteNoteType";
 import { noteType } from "../types/noteType";
 import { deleteNote } from "../utils/firebase/CRUD";
+import AlertYesOrNo from "./AlertYesOrNo";
 import MyModal from "./MyModal";
 
 const Card = ({ title, content, date, noteID, userID, getNotes, setNotes }: { title: string, content: string, date: string, noteID: string, userID: string, getNotes: noteType, setNotes: React.Dispatch<React.SetStateAction<noteType>> }) => {
@@ -24,8 +26,6 @@ const Card = ({ title, content, date, noteID, userID, getNotes, setNotes }: { ti
     title, content, date, noteID
   }
 
-  const [isUpdateDataToAPI, setIsUpdateDataToAPI] = useState(false)
-
   const updateNote = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, note: {
     title: string;
     content: string;
@@ -34,7 +34,6 @@ const Card = ({ title, content, date, noteID, userID, getNotes, setNotes }: { ti
   },
     userID: string,
   ) => {
-    setIsUpdateDataToAPI(true)
     e.stopPropagation();
     setUpdatedata({
       title: note.title,
@@ -45,6 +44,10 @@ const Card = ({ title, content, date, noteID, userID, getNotes, setNotes }: { ti
       isShowUpdateModal: true,
     })
   }
+
+  const [isShowAlert, setIsShowAlert] = useState(false)
+
+  const [dataDeleteNote, setDataDeleteNote] = useState<DataDeleteNoteType>();
 
   return (
     <>
@@ -60,12 +63,16 @@ const Card = ({ title, content, date, noteID, userID, getNotes, setNotes }: { ti
             Update
           </button>
           <button type="submit" className="bg-slate-200 mx-3 rounded-xl py-1 px-2 font-serif hover:bg-red-700 hover:text-white dark:bg-slate-300 md:text-md"
-            onClick={e => deleteNote(e, note, userID, getNotes, setNotes)}>
+            onClick={e => {
+              setIsShowAlert(true)
+              setDataDeleteNote({ e, note, userID, getNotes, setNotes })
+            }}>
             Delete
           </button>
         </div>
       </div>
       <MyModal updateData={updateData} setUpdateData={setUpdatedata} />
+      {isShowAlert && <AlertYesOrNo setIsShowAlert={setIsShowAlert} dataDeleteNote={dataDeleteNote} />}
     </>
   );
 };
