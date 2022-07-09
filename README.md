@@ -1,17 +1,17 @@
 # What is this project
-this is a project about auth and CRUD app that inspired from yt video about react-firebase with indonesian languange\
+this is a project about auth and CRUD app that inspired from yt video about react-firebase with indonesian languange
 
 # what special this project?
-even though i know react have redux as global state management, i still don't really understand why we really need redux so i try to create this one of my serious project to learn more about why we need redux instead of useState that deliver with prop, small note that i already try redux before in `sinode-firebase` github\
+even though i know react have redux as global state management, i still don't really understand why we really need redux so i try to create this one of my serious project to learn more about why we need redux instead of useState that deliver with prop, small note that i already try redux before in `sinode-firebase` github
 
 # Want Try?
 just run `git clone https://github.com/krisna31/sinodes-tailwind`\
 then `cd sinodes-tailwind`\
 next `npm i`\
-continue `npm run start`\
+continue `npm run start`
 
 # Or Live Demo in 
-`https://sinode-firebase.web.app/`\
+[here](https://sinode-firebase.web.app/)
 
 # Getting Started with Create React App
 
