@@ -1,9 +1,7 @@
-import { UserDataType } from "../../types/UserDataType";
-import { Dispatch } from "react";
-import { ref, remove, set } from "firebase/database";
+import { ref, remove } from "firebase/database";
 import { push } from "firebase/database";
 import { getDatabase } from "firebase/database";
-import { AuthPageDataType } from "../../types/AuthPageDataType";
+import { contentNoteType } from "../../types/ContentNoteType";
 import { noteType } from "../../types/noteType";
 
 const writeUserData = (userId: string, email: string, title: string, content: string, date: string) => {
@@ -36,6 +34,16 @@ const deleteDataFromApi = (noteID: string, userID: string) => {
         rej(error);
       });
   });
+};
+
+const deleteNote = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, note: contentNoteType, userID: string, getNotes: noteType, setNotes: React.Dispatch<React.SetStateAction<noteType>>) => {
+  e.stopPropagation();
+
+  deleteDataFromApi(note.noteID, userID)
+    .then((res) => {
+      setNotes({ ...getNotes, counter: getNotes.counter++ });
+    })
+    .catch((error) => {});
 };
 
 // const updateDataToAPI = ({
@@ -74,4 +82,4 @@ const deleteDataFromApi = (noteID: string, userID: string) => {
 //   });
 // };
 
-export { writeUserData, deleteDataFromApi };
+export { writeUserData, deleteDataFromApi, deleteNote };

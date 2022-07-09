@@ -32,7 +32,8 @@ export default function Home({ getUserData, setUserData }: { getUserData: UserDa
         <span className="text-sm text-slate-500 sm:text-center dark:text-slate-700 mb-4 md:mb-0">@2022 Krisna31. Created With Laptop</span>
         <div className="flex justify-between">
           <div className="flex space-x-6 sm:justify-center sm:mt-0 justify-center">
-            <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+            <a href="https://www.facebook.com/profile.php?id=100006248929202" title="Link Facebook Krisna" className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+              target="_blank" rel="noopener noreferrer">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   fillRule="evenodd"
@@ -41,7 +42,8 @@ export default function Home({ getUserData, setUserData }: { getUserData: UserDa
                 />
               </svg>
             </a>
-            <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+            <a href="https://github.com/krisna31" title="Link Github Krisna" className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+              target="_blank" rel="noopener noreferrer">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   fillRule="evenodd"
@@ -50,7 +52,8 @@ export default function Home({ getUserData, setUserData }: { getUserData: UserDa
                 />
               </svg>
             </a>
-            <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+            <a href="https://www.instagram.com/krisna_putra31/" title="Link Instagram Krisna" className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+              target="_blank" rel="noopener noreferrer" >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   fillRule="evenodd"
