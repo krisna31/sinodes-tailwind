@@ -1,4 +1,4 @@
-# if you want to run in your own machine do not forget to add env variable for REACT_APP_KEY in index.tsx file for `firebase config` object\
+# if you want to run in your own machine do not forget to add env variable for REACT_APP_KEY in index.tsx file for `firebase config`
 
 # Attention 
 i'am as the dev still can't fix 2 little bug in add note and update note but because it's not break the flow of the app so maybe sometimes i or maybe `YOU` will help me to fix it. If you really want to help me you can do pull req or asking to me first what the bug is about. Thank you for read this
