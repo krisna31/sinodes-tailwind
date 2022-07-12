@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AuthPageDataType } from "../types/AuthPageDataType";
 import { UserDataType } from "../types/UserDataType";
 import { getDatabase, onValue, ref } from "firebase/database";
