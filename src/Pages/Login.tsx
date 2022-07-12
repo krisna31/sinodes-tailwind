@@ -27,7 +27,11 @@ export default function Login({ getUserData, setUserData }: { getUserData: UserD
         navigate("/dashboard");
       })
       .catch((error) => {
-        setError({ isError: true, message: "Login Failed Check Again Email And Password" });
+        error = error + "";
+        if (error.match("auth/user-not-found"))
+          setError({ isError: true, message: "User Not Found, You Can Sign Up With Sign Up Button on Top Right Page" });
+        else
+          setError({ isError: true, message: "Login Failed Check Again Email And Password" });
         setStringInput({ email: "", password: "" });
       });
   };

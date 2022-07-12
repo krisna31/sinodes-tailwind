@@ -14,7 +14,7 @@ import { getDatabase } from "firebase/database";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBQP30hAvNVZdcHXBSnWWDNMGcVGOT3gxg",
+  apiKey: process.env.REACT_APP_KEY,
   authDomain: "sinode-firebase.firebaseapp.com",
   databaseURL: "https://sinode-firebase-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "sinode-firebase",
@@ -22,6 +22,7 @@ const firebaseConfig = {
   messagingSenderId: "726872249083",
   appId: "1:726872249083:web:fe4467f9fca8c81c73d65e",
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
