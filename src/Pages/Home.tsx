@@ -4,7 +4,7 @@ import logo from "../images/logo.ico";
 import { UserDataType } from "../types/UserDataType";
 
 export default function Home({ getUserData, setUserData }: { getUserData: UserDataType; setUserData: Dispatch<SetStateAction<UserDataType>> }) {
-  const userData = JSON.parse(localStorage.getItem("datauser") || '{}');
+  const userData = JSON.parse(localStorage.getItem("datauser") ?? '{}');
   return (
     <div className="min-h-screen flex flex-col justify-between">
       <header className="bg-slate-200 shadow-sm flex items-center justify-between py-2 pl-2 pr-5 dark:bg-slate-400">
