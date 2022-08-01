@@ -4,9 +4,9 @@ import Authorize from "../molecules/Authorize";
 
 
 export default function Dashboard({ getUserData }: { getUserData: UserDataType }) {
-  let userData = JSON.parse(localStorage.getItem("datauser") || '{}');
-  if (!userData.isLoggedIn) localStorage.setItem("datauser", JSON.stringify(getUserData))
-  userData = JSON.parse(localStorage.getItem("datauser") || '{}');
+  let userData = JSON.parse(sessionStorage.getItem("datauser") || '{}');
+  if (!userData.isLoggedIn) sessionStorage.setItem("datauser", JSON.stringify(getUserData))
+  userData = JSON.parse(sessionStorage.getItem("datauser") || '{}');
 
   getUserData = userData;
 

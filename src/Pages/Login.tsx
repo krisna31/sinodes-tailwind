@@ -31,7 +31,7 @@ export default function Login({ getUserData, setUserData }: { getUserData: UserD
         if (error.match("auth/user-not-found"))
           setError({ isError: true, message: "User Not Found, You Can Sign Up With Sign Up Button on Top Right Page" });
         else if (error.match("auth/network-request-failed"))
-        setError({ isError: true, message: "Login Failed, Check again your internet connection" });
+          setError({ isError: true, message: "Login Failed, Check again your internet connection" });
         else
           setError({ isError: true, message: "Login Failed Check Again Email And Password" });
         setStringInput({ email: "", password: "" });

@@ -4,7 +4,8 @@ import logo from "../images/logo.ico";
 import { UserDataType } from "../types/UserDataType";
 
 export default function Home({ getUserData, setUserData }: { getUserData: UserDataType; setUserData: Dispatch<SetStateAction<UserDataType>> }) {
-  const userData = JSON.parse(localStorage.getItem("datauser") ?? '{}');
+  const userData = JSON.parse(sessionStorage.getItem("datauser") ?? '{}');
+  console.log("🚀 ~ file: Home.tsx ~ line 8 ~ Home ~ userData", userData)
   return (
     <div className="min-h-screen flex flex-col justify-between">
       <header className="bg-slate-200 shadow-sm flex items-center justify-between py-2 pl-2 pr-5 dark:bg-slate-400">
@@ -19,7 +20,7 @@ export default function Home({ getUserData, setUserData }: { getUserData: UserDa
               </div>}
               <Link to="/" onClick={() => {
                 setUserData({ ...getUserData, isLoggedIn: false })
-                localStorage.removeItem("datauser")
+                sessionStorage.removeItem("datauser")
               }}
                 className="text-slate-600 px-5 py-2 bg-slate-300 hover:bg-slate-500 hover:text-white rounded-md text-xs dark:hover:bg-gray-500 dark:hover:text-slate-100 mx-4 md:mx-7 md:px-6 md:text-sm dark:text-slate-700 transition-all ease-in-out delay-75 duration-200 hover:text-sm" >
                 Logout
